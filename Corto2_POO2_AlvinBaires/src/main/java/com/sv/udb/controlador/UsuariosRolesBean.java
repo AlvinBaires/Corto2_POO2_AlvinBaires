@@ -7,6 +7,7 @@ package com.sv.udb.controlador;
 
 import com.sv.udb.ejb.AlumnosFacadeLocal;
 import com.sv.udb.ejb.UsuariosRolesFacade;
+import com.sv.udb.ejb.UsuariosRolesFacadeLocal;
 import com.sv.udb.modelo.Alumnos;
 import com.sv.udb.modelo.UsuariosRoles;
 import java.io.Serializable;
@@ -26,7 +27,7 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class UsuariosRolesBean implements Serializable{
     @EJB
-    private UsuariosRolesFacade FCDEUsuaRole;    
+    private UsuariosRolesFacadeLocal FCDEUsuaRole;    
     private UsuariosRoles objeUsuaRole;
     private List<UsuariosRoles> listUsuaRole;
     private boolean guardar;

@@ -59,44 +59,32 @@ and open the template in the editor.
                     <div class="panel-body">
                         <h:form>
                             <!--Form exclusivo para los remotos-->
-                            <p:remoteCommand name="consDato" actionListener="#{gruposBean.cons()}" update=":FormDato" 
+                            <p:remoteCommand name="consDato" actionListener="#{usuariosRolesBean.cons()}" update=":FormDato" 
                                              oncomplete="INIT_OBJE();" global="true"/>
-                            <p:remoteCommand name="elimDato" actionListener="#{gruposBean.elim()}" update=":FormDato :ContDato" 
+                            <p:remoteCommand name="elimDato" actionListener="#{usuariosRolesBean.elim()}" update=":FormDato :ContDato" 
                                              oncomplete="INIT_OBJE();"  global="true"/>
                         </h:form>
                         <h:form id="FormDato">
                             
-                            <!--<h:inputHidden id="codi" value="#{gruposBean.objeGrup.codiGrup}" />
-                            
-                                   
-                            <div class="input-group input-group-xs">
-                                <h:outputLabel  for="prof" value="Profesores "/>
-                                <h:selectOneMenu id="prof" value="#{gruposBean.objeGrup.codiProf}" class="form-control">
-                                    <f:selectItem pt:data-hidden="true" itemLabel="Seleccione..."/>
-                                    <f:selectItems value="#{profesoresBean.listProf}" var="lstProf" itemLabel="#{lstProf.nombProf} #{lstProf.apelProf}" itemValue="#{lstProf}"/>
-                                    <f:converter converterId="PooConv"/>
-                                </h:selectOneMenu>
-                                <h:message for="prof" errorClass="field-error" />
-                            </div>
-                            -->
+                           
                             
                             
                             
                             <div class="input-group-btn right" style="padding-top: 5px;">
                                 <div class="btn-group">
                                     <h:commandLink id="btonCanc" class="btn btn-default btn-xs">
-                                        <p:ajax listener="#{gruposBean.limpForm()}" process="@form" update="@form" global="true"/>
+                                        <p:ajax listener="#{usuariosRolesBean.limpForm()}" process="@form" update="@form" global="true"/>
                                         <i class="fa fa-mail-forward"/> Cancelar
                                     </h:commandLink>
-                                    <h:commandLink id="btonGuar" class="btn btn-success btn-xs" rendered="#{gruposBean.guardar}">
-                                        <p:ajax listener="#{gruposBean.guar()}" process="@form" update="@form :ContDato" oncomplete="INIT_OBJE();" />
+                                    <h:commandLink id="btonGuar" class="btn btn-success btn-xs" rendered="#{usuariosRolesBean.guardar}">
+                                        <p:ajax listener="#{usuariosRolesBean.guar()}" process="@form" update="@form :ContDato" oncomplete="INIT_OBJE();" />
                                         <i class="fa fa-plus"/> Guardar
                                     </h:commandLink>
-                                    <h:commandLink id="btonModi" class="btn btn-primary btn-xs" rendered="#{!gruposBean.guardar}">
-                                        <p:ajax listener="#{gruposBean.modi()}" process="@form" update="@form :ContDato" oncomplete="INIT_OBJE();" />
+                                    <h:commandLink id="btonModi" class="btn btn-primary btn-xs" rendered="#{!usuariosRolesBean.guardar}">
+                                        <p:ajax listener="#{usuariosRolesBean.modi()}" process="@form" update="@form :ContDato" oncomplete="INIT_OBJE();" />
                                         <i class="fa fa-edit"/> Modificar
                                     </h:commandLink>
-                                    <h:outputLink id="btonElim" class="btn btn-danger btn-xs" rendered="#{!gruposBean.guardar}" 
+                                    <h:outputLink id="btonElim" class="btn btn-danger btn-xs" rendered="#{!usuariosRolesBean.guardar}" 
                                         pt:data-toggle="confirmation" pt:data-btn-ok-label="Sí" pt:data-btn-ok-icon="fa fa-times"
                                         pt:data-btn-ok-class="btn-danger btn-xs" pt:data-btn-cancel-label="No" pt:data-btn-cancel-icon="fa fa-mail-forward"
                                         pt:data-btn-cancel-class="btn-default btn-xs" pt:data-title="¿Esta seguro que desea eliminar?">
@@ -141,12 +129,7 @@ and open the template in the editor.
                            </h:dataTable>
                         </h:panelGroup>
                     </div>
-                </div>
-                <a href="index.xhtml" class="btn btn-warning">Alumnos</a>
-                <a href="Cursos.xhtml" class="btn btn-primary">Cursos</a>
-                <a href="Grupos.xhtml" class="btn btn-warning">Grupos</a>
-                <a href="GruposAlumnos.xhtml" class="btn btn-primary">Grupos Alumnos</a>
-                <a href="Profesores.xhtml" class="btn btn-warning">Profesores</a>
+                </div>                
             </div>
         </div>
     </h:body>
