@@ -6,54 +6,54 @@
 package com.sv.udb.controlador;
 
 import com.sv.udb.ejb.AlumnosFacadeLocal;
-import com.sv.udb.ejb.RolesFacadeLocal;
+import com.sv.udb.ejb.UsuariosFacadeLocal;
 import com.sv.udb.modelo.Alumnos;
-import com.sv.udb.modelo.Roles;
+import com.sv.udb.modelo.Usuarios;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.faces.view.ViewScoped;
+import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 
 /**
  *
- * @author Laboratorio
+ * @author REGISTRO
  */
-@Named(value = "rolesBean")
+@Named(value = "usuariosBean")
 @ViewScoped
-public class RolesBean implements Serializable{
+public class UsuariosBean implements Serializable{
     @EJB
-    private RolesFacadeLocal FCDERole;    
-    private Roles objeRole;
-    private List<Roles> listRole;
+    private UsuariosFacadeLocal FCDEUsua;    
+    private Usuarios objeUsua;
+    private List<Usuarios> listUsua;
     private boolean guardar;
-    
    
 
     public boolean isGuardar() {
         return guardar;
     }
 
-    public Roles getObjeRole() {
-        return objeRole;
+    public Usuarios getObjeUsua() {
+        return objeUsua;
     }
 
-    public void setObjeRole(Roles objeRole) {
-        this.objeRole = objeRole;
+    public void setObjeUsua(Usuarios objeUsua) {
+        this.objeUsua = objeUsua;
     }
 
-    public List<Roles> getListRole() {
-        return listRole;
+    public List<Usuarios> getListUsua() {
+        return listUsua;
     }
 
-    public void setListRole(List<Roles> listRole) {
-        this.listRole = listRole;
+    public void setListUsua(List<Usuarios> listUsua) {
+        this.listUsua = listUsua;
     }
-           
-    public RolesBean() {
+        
+    public UsuariosBean() {
     }
     
     @PostConstruct
@@ -65,15 +65,16 @@ public class RolesBean implements Serializable{
     
     public void limpForm()
     {
-        this.objeRole = new Roles();
+        this.objeUsua = new Usuarios();
         this.guardar = true;        
     }
+       
     
     public void consTodo()
     {
         try
         {
-            this.listRole = FCDERole.findAll();
+            this.listUsua = FCDEUsua.findAll();
         }
         catch(Exception ex)
         {

@@ -65,8 +65,27 @@ and open the template in the editor.
                                              oncomplete="INIT_OBJE();"  global="true"/>
                         </h:form>
                         <h:form id="FormDato">
+                            <h:inputHidden id="codi" value="#{usuariosRolesBean.objeUsuaRole.codiUsuaRole}" />
                             
-                           
+                           <div class="input-group input-group-xs">
+                                <h:outputLabel  for="usua" value="Usuario "/>
+                                <h:selectOneMenu id="usua" value="#{usuariosRolesBean.objeUsuaRole.codiUsua}" class="form-control">
+                                    <f:selectItem pt:data-hidden="true" itemLabel="Seleccione..."/>
+                                    <f:selectItems value="#{usuariosBean.listUsua}" var="lstUsua" itemLabel="#{lstUsua.acceUsua}" itemValue="#{lstUsua}"/>
+                                    <f:converter converterId="PooConv"/>
+                                </h:selectOneMenu>
+                                <h:message for="usua" errorClass="field-error" />
+                           </div>
+                            
+                            <div class="input-group input-group-xs">
+                                <h:outputLabel  for="role" value="Rol "/>
+                                <h:selectOneMenu id="role" value="#{usuariosRolesBean.objeUsuaRole.codiRole}" class="form-control">
+                                    <f:selectItem pt:data-hidden="true" itemLabel="Seleccione..."/>
+                                    <f:selectItems value="#{rolesBean.listRole}" var="lstRole" itemLabel="#{lstRole.descRole}" itemValue="#{lstRole}"/>
+                                    <f:converter converterId="PooConv"/>
+                                </h:selectOneMenu>
+                                <h:message for="role" errorClass="field-error" />
+                           </div>
                             
                             
                             
@@ -114,15 +133,15 @@ and open the template in the editor.
                                    <f:facet name="header">Código</f:facet>
                                    <h:outputText value="#{fila.codiUsuaRole}"/>
                                </h:column>
-                               <h:column pt:data-sortable="true" pt:data-field="nomb">
+                               <h:column pt:data-sortable="true" pt:data-field="acceUsua">
                                    <f:facet name="header">Usuario</f:facet>
                                    <h:outputText value="#{fila.codiUsua.acceUsua}"/>   
                                </h:column>
-                               <h:column pt:data-sortable="true" pt:data-field="fechInic">
+                               <h:column pt:data-sortable="true" pt:data-field="nombAlum">
                                    <f:facet name="header">Alumno</f:facet>
                                    <h:outputText value="#{fila.codiUsua.codiAlum.nombAlum} #{fila.codiUsua.codiAlum.apelAlum}"/>
                                </h:column>
-                                <h:column pt:data-sortable="true" pt:data-field="horaIni">
+                                <h:column pt:data-sortable="true" pt:data-field="descRole">
                                    <f:facet name="header">Rol</f:facet> 
                                    <h:outputText value="#{fila.codiRole.descRole}"/>
                                </h:column>

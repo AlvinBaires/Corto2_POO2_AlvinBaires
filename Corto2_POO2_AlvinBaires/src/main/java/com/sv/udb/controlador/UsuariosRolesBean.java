@@ -11,6 +11,7 @@ import com.sv.udb.ejb.UsuariosRolesFacadeLocal;
 import com.sv.udb.modelo.Alumnos;
 import com.sv.udb.modelo.UsuariosRoles;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -75,6 +76,8 @@ public class UsuariosRolesBean implements Serializable{
         RequestContext ctx = RequestContext.getCurrentInstance(); //Capturo el contexto de la página
         try
         {
+            this.objeUsuaRole.setEstaUsuaRole(1);
+            this.objeUsuaRole.setFechAltaRole(new Date());
             FCDEUsuaRole.create(this.objeUsuaRole);
             ctx.execute("setMessage('MESS_SUCC', 'Atención', 'Datos guardados')");
             this.listUsuaRole.add(this.objeUsuaRole);
@@ -91,6 +94,8 @@ public class UsuariosRolesBean implements Serializable{
         RequestContext ctx = RequestContext.getCurrentInstance();
         try
         {
+            this.objeUsuaRole.setEstaUsuaRole(1);
+            this.objeUsuaRole.setFechAltaRole(new Date());
             this.listUsuaRole.remove(this.objeUsuaRole);
             FCDEUsuaRole.edit(this.objeUsuaRole);
             this.listUsuaRole.add(this.objeUsuaRole);
@@ -105,17 +110,20 @@ public class UsuariosRolesBean implements Serializable{
     
     public void elim()
     {
-        RequestContext ctx = RequestContext.getCurrentInstance(); //Capturo el contexto de la página
+        RequestContext ctx = RequestContext.getCurrentInstance();
         try
         {
-            FCDEUsuaRole.remove(this.objeUsuaRole);
+            this.objeUsuaRole.setEstaUsuaRole(0);
+            this.objeUsuaRole.setFechBajaRole(new Date());
             this.listUsuaRole.remove(this.objeUsuaRole);
+            FCDEUsuaRole.edit(this.objeUsuaRole);
+            this.listUsuaRole.add(this.objeUsuaRole);
             this.limpForm();
             ctx.execute("setMessage('MESS_SUCC', 'Atención', 'Datos Eliminados')");
         }
         catch(Exception ex)
         {
-            ctx.execute("setMessage('MESS_ERRO', 'Atención', 'Error al eliminar')");
+            ctx.execute("setMessage('MESS_ERRO', 'Atención', 'Error al Eliminar ')");
         }
     }
     
@@ -133,8 +141,8 @@ public class UsuariosRolesBean implements Serializable{
     
     public void cons()
     {
-        RequestContext ctx = RequestContext.getCurrentInstance(); //Capturo el contexto de la página
-        int codi = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codiAlumPara"));
+        RequestContext ctx = RequestContext.getCurrentInstance();
+        int codi = Integer.parseInt(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("codiPara"));
         try
         {
             this.objeUsuaRole = FCDEUsuaRole.find(codi);
