@@ -4,7 +4,6 @@ $(document).ready(function() {
         $(this).bootstrapTable().
         unbind('check.bs.table').on('check.bs.table', function (e, row) {
             consDato([{name : 'codiPara', value : row.id.trim()}]);
-            alert(row.id.trim());
         });
         return false;
     };
